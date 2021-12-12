@@ -308,7 +308,6 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
     }
 
     // Vulkan Core 1.0
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceProcAddr);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyDevice);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceQueue);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, QueueSubmit);
@@ -466,9 +465,9 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 #if defined(VK_KHR_swapchain)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateSwapchainKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroySwapchainKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetSwapchainImagesKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, AcquireNextImageKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, QueuePresentKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, AcquireNextImageKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetSwapchainImagesKHR);
 #endif // VK_KHR_swapchain
 
 #if defined(VK_KHR_display_swapchain)
@@ -485,13 +484,13 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 
 #if defined(VK_KHR_video_queue)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPhysicalDeviceVideoCapabilitiesKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, UpdateVideoSessionParametersKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPhysicalDeviceVideoFormatPropertiesKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateVideoSessionParametersKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateVideoSessionKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, BindVideoSessionMemoryKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyVideoSessionKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetVideoSessionMemoryRequirementsKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, BindVideoSessionMemoryKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateVideoSessionParametersKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, UpdateVideoSessionParametersKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyVideoSessionParametersKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginVideoCodingKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndVideoCodingKHR);
@@ -503,20 +502,20 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 #endif // VK_KHR_video_decode_queue
 
 #if defined(VK_EXT_transform_feedback)
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBindTransformFeedbackBuffersEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginTransformFeedbackEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndTransformFeedbackEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginQueryIndexedEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndQueryIndexedEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdDrawIndirectByteCountEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBindTransformFeedbackBuffersEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndTransformFeedbackEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginTransformFeedbackEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndQueryIndexedEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginQueryIndexedEXT);
 #endif // VK_EXT_transform_feedback
 
 #if defined(VK_NVX_binary_import)
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateCuModuleNVX);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateCuFunctionNVX);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyCuModuleNVX);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyCuFunctionNVX);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateCuModuleNVX);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdCuLaunchKernelNVX);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyCuFunctionNVX);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyCuModuleNVX);
 #endif // VK_NVX_binary_import
 
 #if defined(VK_NVX_image_view_handle)
@@ -532,6 +531,11 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 #if defined(VK_AMD_shader_info)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetShaderInfoAMD);
 #endif // VK_AMD_shader_info
+
+#if defined(VK_KHR_dynamic_rendering)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndRenderingKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginRenderingKHR);
+#endif // VK_KHR_dynamic_rendering
 
 #if defined(VK_NV_external_memory_win32)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetMemoryWin32HandleNV);
@@ -572,8 +576,8 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 #endif // VK_KHR_push_descriptor
 
 #if defined(VK_EXT_conditional_rendering)
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginConditionalRenderingEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndConditionalRenderingEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginConditionalRenderingEXT);
 #endif // VK_EXT_conditional_rendering
 
 #if defined(VK_KHR_descriptor_update_template)
@@ -587,10 +591,10 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 #endif // VK_NV_clip_space_w_scaling
 
 #if defined(VK_EXT_display_control)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetSwapchainCounterEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DisplayPowerControlEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, RegisterDeviceEventEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, RegisterDisplayEventEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetSwapchainCounterEXT);
 #endif // VK_EXT_display_control
 
 #if defined(VK_GOOGLE_display_timing)
@@ -608,9 +612,9 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 
 #if defined(VK_KHR_create_renderpass2)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateRenderPass2KHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginRenderPass2KHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdNextSubpass2KHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdEndRenderPass2KHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdNextSubpass2KHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBeginRenderPass2KHR);
 #endif // VK_KHR_create_renderpass2
 
 #if defined(VK_KHR_shared_presentable_image)
@@ -629,8 +633,8 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 
 #if defined(VK_KHR_performance_query)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, AcquireProfilingLockKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, ReleaseProfilingLockKHR);
 #endif // VK_KHR_performance_query
 
@@ -654,25 +658,25 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateAccelerationStructureKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyAccelerationStructureKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBuildAccelerationStructuresKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBuildAccelerationStructuresIndirectKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, BuildAccelerationStructuresKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CopyAccelerationStructureKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CopyAccelerationStructureToMemoryKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, BuildAccelerationStructuresKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdWriteAccelerationStructuresPropertiesKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBuildAccelerationStructuresIndirectKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CopyMemoryToAccelerationStructureKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CopyAccelerationStructureToMemoryKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, WriteAccelerationStructuresPropertiesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdCopyAccelerationStructureKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdCopyAccelerationStructureToMemoryKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdCopyMemoryToAccelerationStructureKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetAccelerationStructureDeviceAddressKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdWriteAccelerationStructuresPropertiesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceAccelerationStructureCompatibilityKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetAccelerationStructureBuildSizesKHR);
 #endif // VK_KHR_acceleration_structure
 
 #if defined(VK_KHR_ray_tracing_pipeline)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdTraceRaysKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateRayTracingPipelinesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetRayTracingShaderGroupHandlesKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateRayTracingPipelinesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetRayTracingCaptureReplayShaderGroupHandlesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdTraceRaysIndirectKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetRayTracingShaderGroupStackSizeKHR);
@@ -694,27 +698,27 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 #endif // VK_EXT_image_drm_format_modifier
 
 #if defined(VK_EXT_validation_cache)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetValidationCacheDataEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateValidationCacheEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyValidationCacheEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, MergeValidationCachesEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetValidationCacheDataEXT);
 #endif // VK_EXT_validation_cache
 
 #if defined(VK_NV_shading_rate_image)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBindShadingRateImageNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetViewportShadingRatePaletteNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetCoarseSampleOrderNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetViewportShadingRatePaletteNV);
 #endif // VK_NV_shading_rate_image
 
 #if defined(VK_NV_ray_tracing)
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateAccelerationStructureNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyAccelerationStructureNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetAccelerationStructureMemoryRequirementsNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, BindAccelerationStructureMemoryNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBuildAccelerationStructureNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdCopyAccelerationStructureNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdTraceRaysNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateRayTracingPipelinesNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateAccelerationStructureNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, BindAccelerationStructureMemoryNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyAccelerationStructureNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdCopyAccelerationStructureNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetAccelerationStructureMemoryRequirementsNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBuildAccelerationStructureNV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdTraceRaysNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetRayTracingShaderGroupHandlesNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetAccelerationStructureHandleNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdWriteAccelerationStructuresPropertiesNV);
@@ -760,19 +764,19 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 
 #if defined(VK_KHR_timeline_semaphore)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetSemaphoreCounterValueKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, WaitSemaphoresKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, SignalSemaphoreKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, WaitSemaphoresKHR);
 #endif // VK_KHR_timeline_semaphore
 
 #if defined(VK_INTEL_performance_query)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, InitializePerformanceApiINTEL);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, UninitializePerformanceApiINTEL);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetPerformanceMarkerINTEL);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetPerformanceStreamMarkerINTEL);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetPerformanceOverrideINTEL);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, AcquirePerformanceConfigurationINTEL);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, ReleasePerformanceConfigurationINTEL);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetPerformanceStreamMarkerINTEL);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetPerformanceMarkerINTEL);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetPerformanceOverrideINTEL);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, QueueSetPerformanceConfigurationINTEL);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, ReleasePerformanceConfigurationINTEL);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPerformanceParameterINTEL);
 #endif // VK_INTEL_performance_query
 
@@ -810,13 +814,12 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, AcquireFullScreenExclusiveModeEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, ReleaseFullScreenExclusiveModeEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceGroupSurfacePresentModes2EXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceGroupSurfacePresentModes2EXT);
 #endif // VK_EXT_full_screen_exclusive
 
 #if defined(VK_KHR_buffer_device_address)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceMemoryOpaqueCaptureAddressKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetBufferDeviceAddressKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetBufferOpaqueCaptureAddressKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceMemoryOpaqueCaptureAddressKHR);
 #endif // VK_KHR_buffer_device_address
 
 #if defined(VK_EXT_line_rasterization)
@@ -829,46 +832,46 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 
 #if defined(VK_EXT_extended_dynamic_state)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetCullModeEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBindVertexBuffers2EXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetFrontFaceEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetPrimitiveTopologyEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetViewportWithCountEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetScissorWithCountEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBindVertexBuffers2EXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetDepthTestEnableEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetDepthWriteEnableEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetDepthCompareOpEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetDepthBoundsTestEnableEXT);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetDepthCompareOpEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetStencilTestEnableEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetStencilOpEXT);
 #endif // VK_EXT_extended_dynamic_state
 
 #if defined(VK_KHR_deferred_host_operations)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DeferredOperationJoinKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateDeferredOperationKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyDeferredOperationKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeferredOperationMaxConcurrencyKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeferredOperationResultKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DeferredOperationJoinKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeferredOperationMaxConcurrencyKHR);
 #endif // VK_KHR_deferred_host_operations
 
 #if defined(VK_KHR_pipeline_executable_properties)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPipelineExecutableInternalRepresentationsKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPipelineExecutablePropertiesKHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPipelineExecutableStatisticsKHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPipelineExecutableInternalRepresentationsKHR);
 #endif // VK_KHR_pipeline_executable_properties
 
 #if defined(VK_NV_device_generated_commands)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyIndirectCommandsLayoutNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetGeneratedCommandsMemoryRequirementsNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdPreprocessGeneratedCommandsNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdExecuteGeneratedCommandsNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdBindPipelineShaderGroupNV);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateIndirectCommandsLayoutNV);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyIndirectCommandsLayoutNV);
 #endif // VK_NV_device_generated_commands
 
 #if defined(VK_EXT_private_data)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, SetPrivateDataEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreatePrivateDataSlotEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyPrivateDataSlotEXT);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, SetPrivateDataEXT);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetPrivateDataEXT);
 #endif // VK_EXT_private_data
 
@@ -878,13 +881,13 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 
 #if defined(VK_KHR_synchronization2)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSetEvent2KHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdResetEvent2KHR);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdWaitEvents2KHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdPipelineBarrier2KHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdResetEvent2KHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetQueueCheckpointData2NV);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdWaitEvents2KHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdWriteTimestamp2KHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, QueueSubmit2KHR);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdWriteBufferMarker2AMD);
-    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetQueueCheckpointData2NV);
 #endif // VK_KHR_synchronization2
 
 #if defined(VK_NV_fragment_shading_rate_enums)
@@ -919,6 +922,14 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetSemaphoreZirconHandleFUCHSIA);
 #endif // VK_FUCHSIA_external_semaphore
 
+#if defined(VK_FUCHSIA_buffer_collection)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CreateBufferCollectionFUCHSIA);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, SetBufferCollectionImageConstraintsFUCHSIA);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, DestroyBufferCollectionFUCHSIA);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, SetBufferCollectionBufferConstraintsFUCHSIA);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetBufferCollectionPropertiesFUCHSIA);
+#endif // VK_FUCHSIA_buffer_collection
+
 #if defined(VK_HUAWEI_subpass_shading)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI);
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, CmdSubpassShadingHUAWEI);
@@ -952,6 +963,12 @@ VKAPI_ATTR VkResult VKAPI_CALL VulkanDynamicGetDeviceDispatch(VkDevice device, c
 #if defined(VK_EXT_pageable_device_local_memory)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, SetDeviceMemoryPriorityEXT);
 #endif // VK_EXT_pageable_device_local_memory
+
+#if defined(VK_KHR_maintenance4)
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceBufferMemoryRequirementsKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceImageSparseMemoryRequirementsKHR);
+    VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceImageMemoryRequirementsKHR);
+#endif // VK_KHR_maintenance4
 
 #if defined(VK_KHR_device_group) || defined(VK_KHR_swapchain)
     VULKANDYNAMIC_GET_DEVICE_SYMBOL(device, deviceDispatch, GetDeviceGroupPresentCapabilitiesKHR);

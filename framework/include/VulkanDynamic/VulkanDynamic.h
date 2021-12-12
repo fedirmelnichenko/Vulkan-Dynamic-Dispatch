@@ -419,9 +419,9 @@ typedef struct VulkanDynamicDeviceDispatch
 #if defined(VK_KHR_swapchain)
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateSwapchainKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(DestroySwapchainKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetSwapchainImagesKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(AcquireNextImageKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(QueuePresentKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(AcquireNextImageKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetSwapchainImagesKHR);
 #endif // VK_KHR_swapchain
 
 #if defined(VK_KHR_display_swapchain)
@@ -438,13 +438,13 @@ typedef struct VulkanDynamicDeviceDispatch
 
 #if defined(VK_KHR_video_queue)
     VULKANDYNAMIC_DECLARE_FUNCTION(GetPhysicalDeviceVideoCapabilitiesKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(UpdateVideoSessionParametersKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetPhysicalDeviceVideoFormatPropertiesKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CreateVideoSessionParametersKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateVideoSessionKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(BindVideoSessionMemoryKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(DestroyVideoSessionKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetVideoSessionMemoryRequirementsKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(BindVideoSessionMemoryKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CreateVideoSessionParametersKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(UpdateVideoSessionParametersKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(DestroyVideoSessionParametersKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginVideoCodingKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndVideoCodingKHR);
@@ -456,20 +456,20 @@ typedef struct VulkanDynamicDeviceDispatch
 #endif // VK_KHR_video_decode_queue
 
 #if defined(VK_EXT_transform_feedback)
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBindTransformFeedbackBuffersEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginTransformFeedbackEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndTransformFeedbackEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginQueryIndexedEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndQueryIndexedEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdDrawIndirectByteCountEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBindTransformFeedbackBuffersEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndTransformFeedbackEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginTransformFeedbackEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndQueryIndexedEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginQueryIndexedEXT);
 #endif // VK_EXT_transform_feedback
 
 #if defined(VK_NVX_binary_import)
-    VULKANDYNAMIC_DECLARE_FUNCTION(CreateCuModuleNVX);
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateCuFunctionNVX);
-    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyCuModuleNVX);
-    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyCuFunctionNVX);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CreateCuModuleNVX);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdCuLaunchKernelNVX);
+    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyCuFunctionNVX);
+    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyCuModuleNVX);
 #endif // VK_NVX_binary_import
 
 #if defined(VK_NVX_image_view_handle)
@@ -485,6 +485,11 @@ typedef struct VulkanDynamicDeviceDispatch
 #if defined(VK_AMD_shader_info)
     VULKANDYNAMIC_DECLARE_FUNCTION(GetShaderInfoAMD);
 #endif // VK_AMD_shader_info
+
+#if defined(VK_KHR_dynamic_rendering)
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndRenderingKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginRenderingKHR);
+#endif // VK_KHR_dynamic_rendering
 
 #if defined(VK_NV_external_memory_win32)
     VULKANDYNAMIC_DECLARE_FUNCTION(GetMemoryWin32HandleNV);
@@ -525,8 +530,8 @@ typedef struct VulkanDynamicDeviceDispatch
 #endif // VK_KHR_push_descriptor
 
 #if defined(VK_EXT_conditional_rendering)
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginConditionalRenderingEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndConditionalRenderingEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginConditionalRenderingEXT);
 #endif // VK_EXT_conditional_rendering
 
 #if defined(VK_KHR_descriptor_update_template)
@@ -540,10 +545,10 @@ typedef struct VulkanDynamicDeviceDispatch
 #endif // VK_NV_clip_space_w_scaling
 
 #if defined(VK_EXT_display_control)
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetSwapchainCounterEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(DisplayPowerControlEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(RegisterDeviceEventEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(RegisterDisplayEventEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetSwapchainCounterEXT);
 #endif // VK_EXT_display_control
 
 #if defined(VK_GOOGLE_display_timing)
@@ -561,9 +566,9 @@ typedef struct VulkanDynamicDeviceDispatch
 
 #if defined(VK_KHR_create_renderpass2)
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateRenderPass2KHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginRenderPass2KHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdNextSubpass2KHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdEndRenderPass2KHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdNextSubpass2KHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBeginRenderPass2KHR);
 #endif // VK_KHR_create_renderpass2
 
 #if defined(VK_KHR_shared_presentable_image)
@@ -582,8 +587,8 @@ typedef struct VulkanDynamicDeviceDispatch
 
 #if defined(VK_KHR_performance_query)
     VULKANDYNAMIC_DECLARE_FUNCTION(EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(AcquireProfilingLockKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(ReleaseProfilingLockKHR);
 #endif // VK_KHR_performance_query
 
@@ -607,25 +612,25 @@ typedef struct VulkanDynamicDeviceDispatch
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateAccelerationStructureKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(DestroyAccelerationStructureKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdBuildAccelerationStructuresKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBuildAccelerationStructuresIndirectKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(BuildAccelerationStructuresKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CopyAccelerationStructureKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CopyAccelerationStructureToMemoryKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(BuildAccelerationStructuresKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdWriteAccelerationStructuresPropertiesKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBuildAccelerationStructuresIndirectKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CopyMemoryToAccelerationStructureKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CopyAccelerationStructureToMemoryKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(WriteAccelerationStructuresPropertiesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdCopyAccelerationStructureKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdCopyAccelerationStructureToMemoryKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdCopyMemoryToAccelerationStructureKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetAccelerationStructureDeviceAddressKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdWriteAccelerationStructuresPropertiesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceAccelerationStructureCompatibilityKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetAccelerationStructureBuildSizesKHR);
 #endif // VK_KHR_acceleration_structure
 
 #if defined(VK_KHR_ray_tracing_pipeline)
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdTraceRaysKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CreateRayTracingPipelinesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetRayTracingShaderGroupHandlesKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CreateRayTracingPipelinesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetRayTracingCaptureReplayShaderGroupHandlesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdTraceRaysIndirectKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetRayTracingShaderGroupStackSizeKHR);
@@ -647,27 +652,27 @@ typedef struct VulkanDynamicDeviceDispatch
 #endif // VK_EXT_image_drm_format_modifier
 
 #if defined(VK_EXT_validation_cache)
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetValidationCacheDataEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateValidationCacheEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(DestroyValidationCacheEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(MergeValidationCachesEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetValidationCacheDataEXT);
 #endif // VK_EXT_validation_cache
 
 #if defined(VK_NV_shading_rate_image)
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdBindShadingRateImageNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetViewportShadingRatePaletteNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetCoarseSampleOrderNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetViewportShadingRatePaletteNV);
 #endif // VK_NV_shading_rate_image
 
 #if defined(VK_NV_ray_tracing)
-    VULKANDYNAMIC_DECLARE_FUNCTION(CreateAccelerationStructureNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyAccelerationStructureNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetAccelerationStructureMemoryRequirementsNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(BindAccelerationStructureMemoryNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBuildAccelerationStructureNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdCopyAccelerationStructureNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdTraceRaysNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateRayTracingPipelinesNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CreateAccelerationStructureNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(BindAccelerationStructureMemoryNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyAccelerationStructureNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdCopyAccelerationStructureNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetAccelerationStructureMemoryRequirementsNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBuildAccelerationStructureNV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdTraceRaysNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetRayTracingShaderGroupHandlesNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetAccelerationStructureHandleNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdWriteAccelerationStructuresPropertiesNV);
@@ -713,19 +718,19 @@ typedef struct VulkanDynamicDeviceDispatch
 
 #if defined(VK_KHR_timeline_semaphore)
     VULKANDYNAMIC_DECLARE_FUNCTION(GetSemaphoreCounterValueKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(WaitSemaphoresKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(SignalSemaphoreKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(WaitSemaphoresKHR);
 #endif // VK_KHR_timeline_semaphore
 
 #if defined(VK_INTEL_performance_query)
     VULKANDYNAMIC_DECLARE_FUNCTION(InitializePerformanceApiINTEL);
     VULKANDYNAMIC_DECLARE_FUNCTION(UninitializePerformanceApiINTEL);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetPerformanceMarkerINTEL);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetPerformanceStreamMarkerINTEL);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetPerformanceOverrideINTEL);
     VULKANDYNAMIC_DECLARE_FUNCTION(AcquirePerformanceConfigurationINTEL);
-    VULKANDYNAMIC_DECLARE_FUNCTION(ReleasePerformanceConfigurationINTEL);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetPerformanceStreamMarkerINTEL);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetPerformanceMarkerINTEL);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetPerformanceOverrideINTEL);
     VULKANDYNAMIC_DECLARE_FUNCTION(QueueSetPerformanceConfigurationINTEL);
+    VULKANDYNAMIC_DECLARE_FUNCTION(ReleasePerformanceConfigurationINTEL);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetPerformanceParameterINTEL);
 #endif // VK_INTEL_performance_query
 
@@ -766,9 +771,9 @@ typedef struct VulkanDynamicDeviceDispatch
 #endif // VK_EXT_full_screen_exclusive
 
 #if defined(VK_KHR_buffer_device_address)
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceMemoryOpaqueCaptureAddressKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetBufferDeviceAddressKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetBufferOpaqueCaptureAddressKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceMemoryOpaqueCaptureAddressKHR);
 #endif // VK_KHR_buffer_device_address
 
 #if defined(VK_EXT_line_rasterization)
@@ -781,46 +786,46 @@ typedef struct VulkanDynamicDeviceDispatch
 
 #if defined(VK_EXT_extended_dynamic_state)
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetCullModeEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBindVertexBuffers2EXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetFrontFaceEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetPrimitiveTopologyEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetViewportWithCountEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetScissorWithCountEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdBindVertexBuffers2EXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetDepthTestEnableEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetDepthWriteEnableEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetDepthCompareOpEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetDepthBoundsTestEnableEXT);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetDepthCompareOpEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetStencilTestEnableEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetStencilOpEXT);
 #endif // VK_EXT_extended_dynamic_state
 
 #if defined(VK_KHR_deferred_host_operations)
+    VULKANDYNAMIC_DECLARE_FUNCTION(DeferredOperationJoinKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateDeferredOperationKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(DestroyDeferredOperationKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetDeferredOperationMaxConcurrencyKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetDeferredOperationResultKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(DeferredOperationJoinKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetDeferredOperationMaxConcurrencyKHR);
 #endif // VK_KHR_deferred_host_operations
 
 #if defined(VK_KHR_pipeline_executable_properties)
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetPipelineExecutableInternalRepresentationsKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetPipelineExecutablePropertiesKHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetPipelineExecutableStatisticsKHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetPipelineExecutableInternalRepresentationsKHR);
 #endif // VK_KHR_pipeline_executable_properties
 
 #if defined(VK_NV_device_generated_commands)
+    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyIndirectCommandsLayoutNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetGeneratedCommandsMemoryRequirementsNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdPreprocessGeneratedCommandsNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdExecuteGeneratedCommandsNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdBindPipelineShaderGroupNV);
     VULKANDYNAMIC_DECLARE_FUNCTION(CreateIndirectCommandsLayoutNV);
-    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyIndirectCommandsLayoutNV);
 #endif // VK_NV_device_generated_commands
 
 #if defined(VK_EXT_private_data)
+    VULKANDYNAMIC_DECLARE_FUNCTION(SetPrivateDataEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(CreatePrivateDataSlotEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(DestroyPrivateDataSlotEXT);
-    VULKANDYNAMIC_DECLARE_FUNCTION(SetPrivateDataEXT);
     VULKANDYNAMIC_DECLARE_FUNCTION(GetPrivateDataEXT);
 #endif // VK_EXT_private_data
 
@@ -830,13 +835,13 @@ typedef struct VulkanDynamicDeviceDispatch
 
 #if defined(VK_KHR_synchronization2)
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSetEvent2KHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdResetEvent2KHR);
-    VULKANDYNAMIC_DECLARE_FUNCTION(CmdWaitEvents2KHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdPipelineBarrier2KHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdResetEvent2KHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetQueueCheckpointData2NV);
+    VULKANDYNAMIC_DECLARE_FUNCTION(CmdWaitEvents2KHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdWriteTimestamp2KHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(QueueSubmit2KHR);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdWriteBufferMarker2AMD);
-    VULKANDYNAMIC_DECLARE_FUNCTION(GetQueueCheckpointData2NV);
 #endif // VK_KHR_synchronization2
 
 #if defined(VK_NV_fragment_shading_rate_enums)
@@ -871,6 +876,14 @@ typedef struct VulkanDynamicDeviceDispatch
     VULKANDYNAMIC_DECLARE_FUNCTION(GetSemaphoreZirconHandleFUCHSIA);
 #endif // VK_FUCHSIA_external_semaphore
 
+#if defined(VK_FUCHSIA_buffer_collection)
+    VULKANDYNAMIC_DECLARE_FUNCTION(CreateBufferCollectionFUCHSIA);
+    VULKANDYNAMIC_DECLARE_FUNCTION(SetBufferCollectionImageConstraintsFUCHSIA);
+    VULKANDYNAMIC_DECLARE_FUNCTION(DestroyBufferCollectionFUCHSIA);
+    VULKANDYNAMIC_DECLARE_FUNCTION(SetBufferCollectionBufferConstraintsFUCHSIA);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetBufferCollectionPropertiesFUCHSIA);
+#endif // VK_FUCHSIA_buffer_collection
+
 #if defined(VK_HUAWEI_subpass_shading)
     VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI);
     VULKANDYNAMIC_DECLARE_FUNCTION(CmdSubpassShadingHUAWEI);
@@ -904,6 +917,12 @@ typedef struct VulkanDynamicDeviceDispatch
 #if defined(VK_EXT_pageable_device_local_memory)
     VULKANDYNAMIC_DECLARE_FUNCTION(SetDeviceMemoryPriorityEXT);
 #endif // VK_EXT_pageable_device_local_memory
+
+#if defined(VK_KHR_maintenance4)
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceBufferMemoryRequirementsKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceImageSparseMemoryRequirementsKHR);
+    VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceImageMemoryRequirementsKHR);
+#endif // VK_KHR_maintenance4
 
 #if defined(VK_KHR_device_group) || defined(VK_KHR_swapchain)
     VULKANDYNAMIC_DECLARE_FUNCTION(GetDeviceGroupPresentCapabilitiesKHR);
